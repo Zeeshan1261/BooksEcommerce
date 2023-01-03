@@ -12,7 +12,7 @@ function App() {
   console.log(data);
   return (
     <div className="App">
-      <Books data={data}  />
+      <Books data={data} />
     </div>
   );
 }

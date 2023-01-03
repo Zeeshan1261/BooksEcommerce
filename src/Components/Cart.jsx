@@ -2,10 +2,21 @@ import React from "react";
 
 function Cart({ add, setAdd }) {
   console.log(add);
-
   const removeItem = (removeItem) => {
-    const remove = add.filter((data) => data.id !== removeItem.id);
-    setAdd(remove);
+    // const remove = add.filter((data) => data.id !== removeItem.id);
+    // setAdd(remove);
+    const find = add.findIndex((item)=>  item.id === removeItem.id)
+// if(add[find].quantity=== 1) 
+  
+if(removeItem.quantity === 1)  {
+  const remove = add.filter((data) => data.id !== removeItem.id);
+  setAdd(remove)
+}
+else if(removeItem.quantity > 1) {
+  add[find].quantity-= 1
+const newBook = [...add]  
+setAdd(newBook) 
+}  
   };
   return (
     <div className="cart-div">
