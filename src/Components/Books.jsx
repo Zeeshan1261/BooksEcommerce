@@ -4,7 +4,9 @@ import Cart from "./Cart";
 
 function Books({ data }) {
 const [add, setAdd] = useState([]); 
+const [price,setPrice] = useState(Number);
 const addToCart = (data) => {    
+  setPrice((prev)=>  prev + data.price)
 const index = add.findIndex((item)=>  item.id === data.id)
 
 if(index === -1) {
@@ -16,27 +18,28 @@ else{
 const newBook = [...add]  
 setAdd(newBook) 
 }
+
   };
 return (
 <>
 <div className="main-div">
 <div className="Products-Div">
-{data.map((product) => {
+{data.map((product,index) => {
 return (
-<>
+<div key={index} >
 <h1>{product.title}</h1>
 <div>
 <img src={product.image} alt={""} />
 </div>
 <h1>{product.price}</h1>
 <button onClick={() => addToCart(product)}>Add to Cart</button>
-</>
+</div>
 );
 })}
 </div>
 <div className="Cart-Div">
 {" "}
-<Cart add={add}  setAdd={setAdd} />{" "}
+<Cart add={add}  setAdd={setAdd}  price={price}  setPrice={setPrice} />{" "}
 </div>
     </div>
     </>
